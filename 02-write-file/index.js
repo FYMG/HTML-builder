@@ -8,7 +8,7 @@ const exit = () => {
   process.exit();
 };
 const writeFile = (filePath) => {
-  filePath = path.join(dir, filePath);
+  filePath = path.isAbsolute(filePath) ? filePath : path.join(dir, filePath);
   const writeStream = fs.createWriteStream(filePath);
   const rl = readline.createInterface(stdin, stdout);
   console.log('Введи в меня свой текст:');

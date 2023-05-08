@@ -2,8 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const dir = path.join(path.dirname(__dirname), '03-files-in-folder');
 
-const filesInFolder = async (folder) => {
-  const folderPath = path.join(dir, folder);
+const filesInFolder = (folder) => {
+  const folderPath = path.isAbsolute(folder) ? folder : path.join(dir, folder);
   fs.stat(folderPath, (err, stats) => {
     if (err) throw err;
     if (!stats.isDirectory()) throw new Error('Указана не папка!');

@@ -3,8 +3,8 @@ const fs = require('fs');
 const dir = path.join(path.dirname(__dirname), '05-merge-styles');
 
 const mergeStyles = (stylesDir, resultDir, resultName = 'bundle.css') => {
-  const stylesPath = path.join(dir, stylesDir);
-  const resultPath = path.join(dir, resultDir);
+  const stylesPath = path.isAbsolute(stylesDir) ? stylesDir : path.join(dir, stylesDir);
+  const resultPath = path.isAbsolute(resultDir) ? resultDir : path.join(dir, resultDir);
   fs.unlink(path.join(resultPath, resultName), () => {
     fs.writeFile(path.join(resultPath, resultName), '', (err) => {
       if (err) throw err;
@@ -23,6 +23,5 @@ const mergeStyles = (stylesDir, resultDir, resultName = 'bundle.css') => {
       });
     });
   });
-
 };
 mergeStyles('styles', 'project-dist');
