@@ -16,7 +16,7 @@ const filesInFolder = (folder) => {
         if (err) throw err;
         if (stats.isFile()) {
           console.log(
-            `${path.basename(file)} - ${path.extname(file).replace('.', '')} - ${stats.size / 1024}kb`
+            `${path.basename(path.parse(file).name)} - ${path.extname(file).replace('.', '')} - ${stats.size / 1024}KB`
           );
         }
       }, );
